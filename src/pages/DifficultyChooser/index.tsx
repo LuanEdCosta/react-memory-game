@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import { GameLocationState } from '../Game/types'
 import {
   Container,
   MenuContainer,
@@ -31,7 +32,11 @@ const DifficultyChooser: React.FC = () => {
   }
 
   const onPlay = (): void => {
-    history.push('/game')
+    const gameLocationState: GameLocationState = {
+      difficulty: selectedDifficulty,
+    }
+
+    history.push('/game', gameLocationState)
   }
 
   return (

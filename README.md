@@ -20,12 +20,12 @@ I want to create some nice animations with CSS but i'm not familiar with that, s
 - [x] Create folder structure
 - [x] Config Eslint, Prettier and TypeSctipt
 - [x] Create Global Styles
-- [ ] Install and create store with redux and react-redux
-- [ ] Setup styled-components theme provider and theme reducer
-- [ ] Create game menu to choose dificulty
+- [x] Install and create store with redux and react-redux
+- [x] Setup styled-components theme provider and theme reducer
+- [x] Create game menu to choose dificulty
+- [ ] Create control buttons (play, pause and restart)
 - [ ] Create game card and main layout
 - [ ] Create timer
-- [ ] Create control buttons (play, pause and restart)
 - [ ] Create the game logic
 - [ ] Animate cards on hover, click and when wrong the combination
 - [ ] Create controls to be able to play with the keyboard

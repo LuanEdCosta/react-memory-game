@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import App from './pages/App'
 import store from './store'
+import './config/IconLibrary'
 
-const Redux = () => {
+const Redux: React.FC = () => {
   return (
     <Provider store={store}>
       <App />
