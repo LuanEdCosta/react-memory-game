@@ -10,7 +10,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   height: 64px;
-  background: rgba(0, 0, 0, 0.2);
+  background: ${({ theme }): string => theme.controlBar};
   user-select: none;
   padding: 0 24px;
 `
@@ -44,7 +44,7 @@ export const DifficultyIndicator = styled.div``
 export const RightSideContainer = styled.div`
   display: flex;
   align-items: center;
-  padding-right: ${ButtonHeight}px;
+  padding-right: 24px;
 `
 
 export const TimerText = styled.span``

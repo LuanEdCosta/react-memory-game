@@ -9,11 +9,14 @@ import GameCards from './GameCards'
 const Game: React.FC = () => {
   const { state } = useLocation<GameLocationState>()
   const [isPaused, setIsPaused] = useState(true)
+  const [imageList, setImageList] = useState<string[]>([])
 
   const gameContextValue: GameContextValue = {
     difficulty: state.difficulty,
     isPaused,
     setIsPaused,
+    imageList,
+    setImageList,
   }
 
   return (

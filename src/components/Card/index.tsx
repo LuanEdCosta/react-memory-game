@@ -1,8 +1,25 @@
-import React from 'react'
-import { Container } from './styles'
+import React, { memo } from 'react'
+import { Container, Image, CardBackface } from './styles'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const Card: React.FC = () => {
-  return <Container />
+type CardProps = {
+  imageUri: string
+  onClick: () => void
+  isShowing?: boolean
+  isVisible?: boolean
 }
 
-export default Card
+const Card: React.FC<CardProps> = (props) => {
+  const { imageUri, onClick, isShowing = false, isVisible = true } = props
+
+  return (
+    <Container onClick={onClick} isVisible={isVisible}>
+      <Image src={imageUri} />
+      {/* <CardBackface>
+        <FontAwesomeIcon icon="play" />
+      </CardBackface> */}
+    </Container>
+  )
+}
+
+export default memo(Card)

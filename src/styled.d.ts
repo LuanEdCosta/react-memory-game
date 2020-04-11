@@ -6,5 +6,6 @@ declare module 'styled-components' {
     primaryText: string
     secondaryText: string
     background: string
+    controlBar: string
   }
 }

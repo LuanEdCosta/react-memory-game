@@ -15,8 +15,8 @@ import {
 
 const DIFFICULTIES = {
   EASY: 12,
-  MEDIUM: 18,
-  HARD: 24,
+  MEDIUM: 20,
+  HARD: 28,
   VERY_HARD: 32,
 }
 

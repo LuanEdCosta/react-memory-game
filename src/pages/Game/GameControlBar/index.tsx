@@ -34,7 +34,7 @@ const GameControlBar: React.FC = () => {
   } = useTimer()
 
   const onPlayPause = (): void => {
-    if (setIsPaused) setIsPaused(!isPaused)
+    setIsPaused(!isPaused)
     if (isPaused) onStartTimer()
     else onPauseTimer()
   }
