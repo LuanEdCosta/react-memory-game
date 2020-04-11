@@ -84,8 +84,9 @@ export const PlayPauseButton = styled(Button)`
 `
 
 const DisabledButtonStyle = css`
-  background: rgba(0, 0, 0, 0.2) !important;
+  background: transparent !important;
   border: 1px solid transparent;
+  cursor: not-allowed;
 `
 
 export const RestartButton = styled(Button)<{ isPaused?: boolean }>`

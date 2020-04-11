@@ -8,7 +8,7 @@ import GameCards from './GameCards'
 
 const Game: React.FC = () => {
   const { state } = useLocation<GameLocationState>()
-  const [isPaused, setIsPaused] = useState(false)
+  const [isPaused, setIsPaused] = useState(true)
 
   const gameContextValue: GameContextValue = {
     difficulty: state.difficulty,

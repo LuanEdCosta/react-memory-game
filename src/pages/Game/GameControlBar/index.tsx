@@ -1,6 +1,8 @@
 import React, { useContext } from 'react'
+import { useHistory } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import GameContext from '../GameContext'
+import { useTimer } from '../../../hooks'
 import { GameContextValue } from '../types'
 import {
   Container,
@@ -14,7 +16,6 @@ import {
   RestartButton,
   ButtonText,
 } from './styles'
-import { useHistory } from 'react-router-dom'
 
 const GameControlBar: React.FC = () => {
   const history = useHistory()
@@ -23,8 +24,19 @@ const GameControlBar: React.FC = () => {
     GameContext,
   )
 
+  const {
+    hoursText,
+    minutesText,
+    secondsText,
+    onStartTimer,
+    onStopTimer,
+    onPauseTimer,
+  } = useTimer()
+
   const onPlayPause = (): void => {
     if (setIsPaused) setIsPaused(!isPaused)
+    if (isPaused) onStartTimer()
+    else onPauseTimer()
   }
 
   const onReturnToMenu = (): void => {
@@ -33,6 +45,12 @@ const GameControlBar: React.FC = () => {
     )
 
     if (playerWantsToLeave) history.goBack()
+  }
+
+  const onRestart = (): void => {
+    if (isPaused) {
+      onStopTimer()
+    }
   }
 
   return (
@@ -50,14 +68,14 @@ const GameControlBar: React.FC = () => {
       <RightSideContainer>
         <Timer>
           <FontAwesomeIcon icon="clock" />
-          <TimerText>00:00:00</TimerText>
+          <TimerText>{`${hoursText}:${minutesText}:${secondsText}`}</TimerText>
         </Timer>
 
         <PlayPauseButton onClick={onPlayPause}>
           <FontAwesomeIcon icon={isPaused ? 'play' : 'pause'} />
         </PlayPauseButton>
 
-        <RestartButton isPaused={isPaused}>
+        <RestartButton isPaused={isPaused} onClick={onRestart}>
           <FontAwesomeIcon icon="undo" />
           <ButtonText>Restart</ButtonText>
         </RestartButton>
