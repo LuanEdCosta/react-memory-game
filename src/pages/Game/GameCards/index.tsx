@@ -2,39 +2,73 @@ import React, { useContext } from 'react'
 import Card from '../../../components/Card'
 import GameContext from '../GameContext'
 import { Container, CardRow } from './styles'
-
-const imageUri =
-  'https://images.unsplash.com/photo-1585991519035-72443f3920ee?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max'
-
-const ROWS_NUMBER = 4
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { IconProp } from '@fortawesome/fontawesome-svg-core'
 
 const GameCards: React.FC = () => {
-  const { difficulty } = useContext(GameContext)
+  const {
+    difficulty,
+    firstSelectedCard,
+    setFirstSelectedCard,
+    secondSelectedCard,
+    setSecondSelectedCard,
+    iconFoundList,
+    iconList,
+  } = useContext(GameContext)
 
-  const onRenderCards = (): React.ReactNodeArray => {
-    const numOfCards = difficulty / ROWS_NUMBER
-    const cardContainerList = []
-
-    for (let i = 0; i < ROWS_NUMBER; i++) {
-      const cardList = []
-
-      for (let j = 0; j < numOfCards; j++) {
-        cardList.push(
-          <Card
-            key={j}
-            imageUri="https://source.unsplash.com/random"
-            onClick={(): void => undefined}
-          />,
-        )
-      }
-
-      cardContainerList.push(<CardRow key={i}>{cardList}</CardRow>)
-    }
-
-    return cardContainerList
+  const onSelectCard = (index: number) => (): void => {
+    if (firstSelectedCard === -1) setFirstSelectedCard(index)
+    else setSecondSelectedCard(index)
   }
 
-  return <Container>{onRenderCards()}</Container>
+  const onMapCards = (icon: string, index: number): React.ReactNode => {
+    const onClick = onSelectCard(index)
+    const wasNotFound = iconFoundList.indexOf(icon) === -1
+    const isTheFirstSelectedCard = firstSelectedCard === index
+    const isTheSecondSelectedCard = secondSelectedCard === index
+
+    return (
+      <Card
+        key={index}
+        onClick={onClick}
+        isVisible={wasNotFound}
+        isShowingFrontFace={isTheFirstSelectedCard || isTheSecondSelectedCard}
+      >
+        <FontAwesomeIcon icon={icon as IconProp} />
+      </Card>
+    )
+  }
+
+  const onGetSlicePortion = (rowNumber: number): number =>
+    (difficulty / 4) * rowNumber
+
+  return (
+    <Container>
+      <CardRow>
+        {iconList
+          .slice(onGetSlicePortion(0), onGetSlicePortion(1))
+          .map(onMapCards)}
+      </CardRow>
+
+      <CardRow>
+        {iconList
+          .slice(onGetSlicePortion(1), onGetSlicePortion(2))
+          .map(onMapCards)}
+      </CardRow>
+
+      <CardRow>
+        {iconList
+          .slice(onGetSlicePortion(2), onGetSlicePortion(3))
+          .map(onMapCards)}
+      </CardRow>
+
+      <CardRow>
+        {iconList
+          .slice(onGetSlicePortion(3), onGetSlicePortion(4))
+          .map(onMapCards)}
+      </CardRow>
+    </Container>
+  )
 }
 
 export default GameCards

@@ -7,6 +7,8 @@ export default {
     secondaryText: '#ccc',
     background: '#333333',
     controlBar: '#222222',
+    cardBackFace: '#111111',
+    cardFrontFace: '#e6e6e6',
   },
   [ThemeTypes.light]: {
     accent: '#00bbcc',
@@ -14,5 +16,7 @@ export default {
     secondaryText: '#616161',
     background: '#ffffff',
     controlBar: '#222222',
+    cardBackFace: '#111111',
+    cardFrontFace: '#e6e6e6',
   },
 }

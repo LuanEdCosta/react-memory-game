@@ -7,5 +7,7 @@ declare module 'styled-components' {
     secondaryText: string
     background: string
     controlBar: string
+    cardBackFace: string
+    cardFrontFace: string
   }
 }

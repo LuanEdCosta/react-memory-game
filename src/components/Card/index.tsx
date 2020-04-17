@@ -1,23 +1,33 @@
 import React, { memo } from 'react'
-import { Container, Image, CardBackface } from './styles'
+import { Container } from './styles'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 type CardProps = {
-  imageUri: string
+  children: React.ReactNode
   onClick: () => void
-  isShowing?: boolean
+  isShowingFrontFace?: boolean
   isVisible?: boolean
 }
 
 const Card: React.FC<CardProps> = (props) => {
-  const { imageUri, onClick, isShowing = false, isVisible = true } = props
+  const {
+    children,
+    onClick,
+    isShowingFrontFace = false,
+    isVisible = true,
+  } = props
 
   return (
-    <Container onClick={onClick} isVisible={isVisible}>
-      <Image src={imageUri} />
-      {/* <CardBackface>
-        <FontAwesomeIcon icon="play" />
-      </CardBackface> */}
+    <Container
+      onClick={onClick}
+      isVisible={isVisible}
+      isShowingFrontFace={isShowingFrontFace}
+    >
+      {isShowingFrontFace ? (
+        children
+      ) : (
+        <FontAwesomeIcon icon="question-circle" />
+      )}
     </Container>
   )
 }
