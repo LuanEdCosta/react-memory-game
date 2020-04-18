@@ -10,7 +10,9 @@ export default createContext<GameContextValue>({
   iconFoundList: [],
   firstSelectedCard: -1,
   secondSelectedCard: -1,
+  isCheckingCards: false,
   setIconFoundList: () => undefined,
   setFirstSelectedCard: () => undefined,
   setSecondSelectedCard: () => undefined,
+  setIsCheckingCards: () => undefined,
 })

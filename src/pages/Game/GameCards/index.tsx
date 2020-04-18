@@ -1,72 +1,77 @@
-import React, { useContext } from 'react'
-import Card from '../../../components/Card'
+import React, { useContext, useEffect } from 'react'
 import GameContext from '../GameContext'
-import { Container, CardRow } from './styles'
+import { Container, CardItem } from './styles'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 
 const GameCards: React.FC = () => {
   const {
-    difficulty,
     firstSelectedCard,
     setFirstSelectedCard,
     secondSelectedCard,
     setSecondSelectedCard,
     iconFoundList,
+    setIconFoundList,
     iconList,
+    isPaused,
+    isCheckingCards,
+    setIsCheckingCards,
   } = useContext(GameContext)
 
   const onSelectCard = (index: number) => (): void => {
+    if (isCheckingCards) return
     if (firstSelectedCard === -1) setFirstSelectedCard(index)
     else setSecondSelectedCard(index)
   }
 
-  const onMapCards = (icon: string, index: number): React.ReactNode => {
-    const onClick = onSelectCard(index)
-    const wasNotFound = iconFoundList.indexOf(icon) === -1
-    const isTheFirstSelectedCard = firstSelectedCard === index
-    const isTheSecondSelectedCard = secondSelectedCard === index
+  const onCheckIfFoundIcon = (): void => {
+    setIsCheckingCards(true)
+    const firstSelectedCardIcon = iconList[firstSelectedCard]
+    const secondSelectedCardIcon = iconList[secondSelectedCard]
 
-    return (
-      <Card
-        key={index}
-        onClick={onClick}
-        isVisible={wasNotFound}
-        isShowingFrontFace={isTheFirstSelectedCard || isTheSecondSelectedCard}
-      >
-        <FontAwesomeIcon icon={icon as IconProp} />
-      </Card>
-    )
+    if (firstSelectedCardIcon === secondSelectedCardIcon) {
+      setTimeout(() => {
+        const iconFoundListClone = [...iconFoundList]
+        iconFoundListClone.push(firstSelectedCardIcon)
+        setIconFoundList(iconFoundListClone)
+        setIsCheckingCards(false)
+      }, [1000])
+    } else {
+      setTimeout(() => {
+        setFirstSelectedCard(-1)
+        setSecondSelectedCard(-1)
+        setIsCheckingCards(false)
+      }, [1000])
+    }
   }
 
-  const onGetSlicePortion = (rowNumber: number): number =>
-    (difficulty / 4) * rowNumber
+  useEffect(onCheckIfFoundIcon, [secondSelectedCard])
 
   return (
     <Container>
-      <CardRow>
-        {iconList
-          .slice(onGetSlicePortion(0), onGetSlicePortion(1))
-          .map(onMapCards)}
-      </CardRow>
+      {iconList.map(
+        (icon: string, index: number): React.ReactNode => {
+          const wasNotFound = iconFoundList.indexOf(icon) === -1
+          const isTheFirstSelectedCard = firstSelectedCard === index
+          const isTheSecondSelectedCard = secondSelectedCard === index
+          const onClick = onSelectCard(index)
 
-      <CardRow>
-        {iconList
-          .slice(onGetSlicePortion(1), onGetSlicePortion(2))
-          .map(onMapCards)}
-      </CardRow>
+          const isShowingFrontFace =
+            isTheFirstSelectedCard || isTheSecondSelectedCard
 
-      <CardRow>
-        {iconList
-          .slice(onGetSlicePortion(2), onGetSlicePortion(3))
-          .map(onMapCards)}
-      </CardRow>
-
-      <CardRow>
-        {iconList
-          .slice(onGetSlicePortion(3), onGetSlicePortion(4))
-          .map(onMapCards)}
-      </CardRow>
+          return (
+            <CardItem
+              key={index}
+              onClick={onClick}
+              isVisible={wasNotFound}
+              isShowingFrontFace={isShowingFrontFace}
+              disabled={isPaused || isShowingFrontFace}
+            >
+              <FontAwesomeIcon icon={icon as IconProp} />
+            </CardItem>
+          )
+        },
+      )}
     </Container>
   )
 }

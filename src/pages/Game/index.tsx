@@ -14,6 +14,7 @@ const Game: React.FC = () => {
   const [firstSelectedCard, setFirstSelectedCard] = useState(-1)
   const [secondSelectedCard, setSecondSelectedCard] = useState(-1)
   const [iconList, setIconList] = useState<string[]>([])
+  const [isCheckingCards, setIsCheckingCards] = useState<boolean>(false)
 
   const gameContextValue: GameContextValue = {
     difficulty: state.difficulty,
@@ -27,6 +28,8 @@ const Game: React.FC = () => {
     setFirstSelectedCard,
     secondSelectedCard,
     setSecondSelectedCard,
+    isCheckingCards,
+    setIsCheckingCards,
   }
 
   return (

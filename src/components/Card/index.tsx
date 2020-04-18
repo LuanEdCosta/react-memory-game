@@ -7,6 +7,8 @@ type CardProps = {
   onClick: () => void
   isShowingFrontFace?: boolean
   isVisible?: boolean
+  className?: string
+  disabled?: boolean
 }
 
 const Card: React.FC<CardProps> = (props) => {
@@ -15,13 +17,17 @@ const Card: React.FC<CardProps> = (props) => {
     onClick,
     isShowingFrontFace = false,
     isVisible = true,
+    className,
+    disabled = false,
   } = props
 
   return (
     <Container
-      onClick={onClick}
       isVisible={isVisible}
+      className={className}
       isShowingFrontFace={isShowingFrontFace}
+      onClick={onClick}
+      disabled={disabled}
     >
       {isShowingFrontFace ? (
         children
