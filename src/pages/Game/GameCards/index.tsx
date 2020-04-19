@@ -24,7 +24,15 @@ const GameCards: React.FC = () => {
     else setSecondSelectedCard(index)
   }
 
+  const onEndCHeckingSelectedCards = (): void => {
+    setFirstSelectedCard(-1)
+    setSecondSelectedCard(-1)
+    setIsCheckingCards(false)
+  }
+
   const onCheckIfFoundIcon = (): void => {
+    if (firstSelectedCard === -1) return
+
     setIsCheckingCards(true)
     const firstSelectedCardIcon = iconList[firstSelectedCard]
     const secondSelectedCardIcon = iconList[secondSelectedCard]
@@ -34,14 +42,10 @@ const GameCards: React.FC = () => {
         const iconFoundListClone = [...iconFoundList]
         iconFoundListClone.push(firstSelectedCardIcon)
         setIconFoundList(iconFoundListClone)
-        setIsCheckingCards(false)
+        onEndCHeckingSelectedCards()
       }, [1000])
     } else {
-      setTimeout(() => {
-        setFirstSelectedCard(-1)
-        setSecondSelectedCard(-1)
-        setIsCheckingCards(false)
-      }, [1000])
+      setTimeout(onEndCHeckingSelectedCards, [1000])
     }
   }
 

@@ -7,6 +7,7 @@ import {
   faUndo,
   faClock,
   faQuestionCircle,
+  faTimes,
 
   // Icons for the game
   faPoo,
@@ -34,6 +35,7 @@ library.add(
   faUndo,
   faClock,
   faQuestionCircle,
+  faTimes,
 
   // Icons for the game
   faPoo,

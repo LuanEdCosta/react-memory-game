@@ -16,4 +16,6 @@ export type GameContextValue = {
   setSecondSelectedCard: React.Dispatch<React.SetStateAction<number>>
   isCheckingCards: boolean
   setIsCheckingCards: React.Dispatch<React.SetStateAction<boolean>>
+  isShowingWinModal: boolean
+  setIsShowingWinModal: React.Dispatch<React.SetStateAction<boolean>>
 }

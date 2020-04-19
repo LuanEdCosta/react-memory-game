@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { GameLocationState, GameContextValue } from './types'
+import GameWinMessage from './GameWinMessage'
 import GameControlBar from './GameControlBar'
 import GameContext from './GameContext'
 import { Container } from './styles'
@@ -9,12 +10,13 @@ import GameCards from './GameCards'
 const Game: React.FC = () => {
   const { state } = useLocation<GameLocationState>()
 
-  const [isPaused, setIsPaused] = useState(true)
+  const [iconList, setIconList] = useState<string[]>([])
   const [iconFoundList, setIconFoundList] = useState<string[]>([])
   const [firstSelectedCard, setFirstSelectedCard] = useState(-1)
   const [secondSelectedCard, setSecondSelectedCard] = useState(-1)
-  const [iconList, setIconList] = useState<string[]>([])
-  const [isCheckingCards, setIsCheckingCards] = useState<boolean>(false)
+  const [isShowingWinModal, setIsShowingWinModal] = useState(false)
+  const [isCheckingCards, setIsCheckingCards] = useState(false)
+  const [isPaused, setIsPaused] = useState(true)
 
   const gameContextValue: GameContextValue = {
     difficulty: state.difficulty,
@@ -30,6 +32,8 @@ const Game: React.FC = () => {
     setSecondSelectedCard,
     isCheckingCards,
     setIsCheckingCards,
+    isShowingWinModal,
+    setIsShowingWinModal,
   }
 
   return (
@@ -37,6 +41,7 @@ const Game: React.FC = () => {
       <Container>
         <GameCards />
         <GameControlBar />
+        <GameWinMessage />
       </Container>
     </GameContext.Provider>
   )
