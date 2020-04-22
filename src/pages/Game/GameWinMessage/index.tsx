@@ -22,15 +22,10 @@ const GameWinMessage: React.FC = () => {
     onClearGameState()
   }
 
-  const onCloseModal = (): void => {
-    setIsShowingWinModal(false)
-    onClearGameState()
-  }
-
   return (
     <AlertModal
       isShowing={isShowingWinModal}
-      onCloseModal={onCloseModal}
+      onCloseModal={onPlayAgain}
       title="Congratulations!"
       message="You proved that your memory is powerful"
     >

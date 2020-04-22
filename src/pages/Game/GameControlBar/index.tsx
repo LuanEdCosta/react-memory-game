@@ -1,9 +1,8 @@
 import React, { useContext, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import useClearGameState from '../useClearGameState'
 import GameContext from '../GameContext'
-import { useTimer } from '../../../hooks'
-import { GameContextValue } from '../types'
 import {
   Container,
   LeftSideContainer,
@@ -16,25 +15,23 @@ import {
   RestartButton,
   ButtonText,
 } from './styles'
-import useClearGameState from '../useClearGameState'
 
 const GameControlBar: React.FC = () => {
-  const { difficulty, isPaused, setIsPaused } = useContext<GameContextValue>(
-    GameContext,
-  )
-
-  const history = useHistory()
-  const onClearGameState = useClearGameState()
-  useEffect(onClearGameState, [])
-
   const {
+    difficulty,
+    isPaused,
+    setIsPaused,
     hoursText,
     minutesText,
     secondsText,
     onStartTimer,
-    onStopTimer,
     onPauseTimer,
-  } = useTimer()
+  } = useContext(GameContext)
+
+  const onClearGameState = useClearGameState()
+  const history = useHistory()
+
+  useEffect(onClearGameState, [])
 
   const onPlayPause = (): void => {
     setIsPaused(!isPaused)
@@ -51,10 +48,7 @@ const GameControlBar: React.FC = () => {
   }
 
   const onRestart = (): void => {
-    if (isPaused) {
-      onStopTimer()
-      onClearGameState()
-    }
+    if (isPaused) onClearGameState()
   }
 
   return (

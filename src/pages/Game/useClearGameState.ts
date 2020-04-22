@@ -13,6 +13,7 @@ export default (): ClearGameStateFunction => {
     setFirstSelectedCard,
     setSecondSelectedCard,
     difficulty,
+    onStopTimer,
   } = useContext(GameContext)
 
   const onShuffleArray = useArrayShuffle<string>()
@@ -22,6 +23,7 @@ export default (): ClearGameStateFunction => {
     setIsPaused(true)
     setFirstSelectedCard(-1)
     setSecondSelectedCard(-1)
+    onStopTimer()
 
     const shuffledArray = onShuffleArray(IconList)
     let correctLengthArray = shuffledArray.slice(0, difficulty / 2)

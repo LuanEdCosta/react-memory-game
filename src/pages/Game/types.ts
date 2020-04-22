@@ -18,4 +18,10 @@ export type GameContextValue = {
   setIsCheckingCards: React.Dispatch<React.SetStateAction<boolean>>
   isShowingWinModal: boolean
   setIsShowingWinModal: React.Dispatch<React.SetStateAction<boolean>>
+  hoursText: string
+  minutesText: string
+  secondsText: string
+  onStartTimer: () => void
+  onStopTimer: () => void
+  onPauseTimer: () => void
 }
