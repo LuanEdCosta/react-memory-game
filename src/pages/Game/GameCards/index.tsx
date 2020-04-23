@@ -16,6 +16,7 @@ const GameCards: React.FC = () => {
     isPaused,
     isCheckingCards,
     setIsCheckingCards,
+    difficulty,
   } = useContext(GameContext)
 
   const onSelectCard = (index: number) => (): void => {
@@ -70,6 +71,7 @@ const GameCards: React.FC = () => {
               isVisible={wasNotFound}
               isShowingFrontFace={isShowingFrontFace}
               disabled={isPaused || isShowingFrontFace}
+              numOfCardsInEachLine={difficulty / 4}
             >
               <FontAwesomeIcon icon={icon as IconProp} />
             </CardItem>

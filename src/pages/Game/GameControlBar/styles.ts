@@ -13,6 +13,10 @@ export const Container = styled.div`
   background: ${({ theme }): string => theme.controlBar};
   user-select: none;
   padding: 0 24px;
+
+  @media only screen and (max-width: 400px) {
+    padding: 0 8px;
+  }
 `
 
 export const LeftSideContainer = styled.div`
@@ -39,7 +43,11 @@ export const BackButton = styled.div`
   }
 `
 
-export const DifficultyIndicator = styled.div``
+export const DifficultyIndicator = styled.div`
+  @media only screen and (max-width: 700px) {
+    display: none;
+  }
+`
 
 export const RightSideContainer = styled.div`
   display: flex;
@@ -58,7 +66,11 @@ export const Timer = styled.div`
   }
 `
 
-export const ButtonText = styled.span``
+export const ButtonText = styled.span`
+  @media only screen and (max-width: 500px) {
+    display: none;
+  }
+`
 
 export const Button = styled.div`
   display: flex;

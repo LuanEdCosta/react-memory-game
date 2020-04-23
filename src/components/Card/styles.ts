@@ -7,12 +7,12 @@ type ContainerType = {
 }
 
 export const Container = styled.div<ContainerType>`
+  /* width: calc(100vw / (32 / 5));
+  height: calc(100vh / 6);
+  font-size: 12rem; */
   border-radius: 10px;
-  width: 20rem;
-  height: 20rem;
   margin: 8px;
   cursor: pointer;
-  font-size: 12rem;
   display: flex;
   justify-content: center;
   align-items: center;
