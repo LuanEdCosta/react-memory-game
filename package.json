@@ -1,7 +1,7 @@
 {
   "name": "react-memory-game",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "homepage": "https://luanedcosta.github.io/react-memory-game",
   "scripts": {
     "predeploy": "npm run build",
