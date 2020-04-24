@@ -27,6 +27,6 @@ Thus i think that TypeScipt is something that i need to learn in order to became
 - [x] Create the game logic
 - [x] Create the win message modal
 - [x] Make the game responsive
-- [ ] Switch themes
+- [x] Switch themes
 - [ ] Create controls to be able to play with the keyboard
 - [ ] Animate cards on hover, click and when choose the wrong cards

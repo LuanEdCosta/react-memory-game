@@ -15,8 +15,8 @@ export default {
     primaryText: '#313131',
     secondaryText: '#616161',
     background: '#ffffff',
-    controlBar: '#222222',
-    cardBackFace: '#111111',
-    cardFrontFace: '#e6e6e6',
+    controlBar: '#f1f1f1',
+    cardBackFace: '#444444',
+    cardFrontFace: '#e2e2e2',
   },
 }

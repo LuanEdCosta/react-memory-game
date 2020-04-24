@@ -8,7 +8,8 @@ import styled, {
 type CssType = FlattenInterpolation<ThemeProps<DefaultTheme>> | null
 
 const ItemSelected = css`
-  background: ${({ theme }): string => theme.accent} !important;
+  background: ${({ theme }): string => theme.primaryText} !important;
+  color: ${({ theme }): string => theme.background} !important;
 `
 
 export const Container = styled.div<{ isSelected: boolean }>`
@@ -19,11 +20,11 @@ export const Container = styled.div<{ isSelected: boolean }>`
   justify-content: space-between;
   cursor: pointer;
   user-select: none;
-  transition: background 0.1s ease-in-out;
+  transition: transform 0.1s ease-in-out;
   border: 2px solid ${({ theme }): string => theme.primaryText};
   ${({ isSelected }): CssType => (isSelected ? ItemSelected : null)}
   &:hover {
-    background: rgba(0, 0, 0, 0.3);
+    transform: translateY(-8px);
   }
 `
 

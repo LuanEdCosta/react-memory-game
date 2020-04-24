@@ -36,10 +36,11 @@ export const BackButton = styled.div`
   min-width: ${ButtonHeight}px;
   font-size: 2rem;
   cursor: pointer;
-  transition: background 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 
   &:hover {
     background: ${({ theme }): string => theme.accent};
+    color: white;
   }
 `
 
@@ -80,10 +81,11 @@ export const Button = styled.div`
   border-radius: 5px;
   border: 1px solid ${({ theme }): string => theme.secondaryText};
   cursor: pointer;
-  transition: background, border 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 
   &:hover {
     background: ${({ theme }): string => theme.accent};
+    color: white;
   }
 
   ${ButtonText} {

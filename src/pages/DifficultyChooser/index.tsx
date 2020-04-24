@@ -1,12 +1,21 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { GameLocationState } from '../Game/types'
+import { useDispatch } from 'react-redux'
+import { setTheme } from '../../store/actions'
+import { useTypedSelector } from '../../hooks'
+import { ThemeTypes } from '../../types/Theme'
 import {
   Container,
   MenuContainer,
   MenuContent,
   AppName,
   DifficultyContainer,
+  DifficultyLabelContainer,
+  DifficultyLabelSubtitle,
+  DifficultyLabelTitle,
+  SwitchThemesButton,
   DifficultyLabel,
   Difficulty,
   PlayButton,
@@ -21,7 +30,9 @@ const DIFFICULTIES = {
 }
 
 const DifficultyChooser: React.FC = () => {
+  const dispatch = useDispatch()
   const history = useHistory()
+  const themeType = useTypedSelector(({ Theme }) => Theme.type)
 
   const [selectedDifficulty, setSelectedDifficulty] = useState(
     DIFFICULTIES.MEDIUM,
@@ -39,14 +50,31 @@ const DifficultyChooser: React.FC = () => {
     history.push('/game', gameLocationState)
   }
 
+  const onSwitchThemes = (): void => {
+    const isUsingDark = themeType === ThemeTypes.dark
+    const newThemeType = isUsingDark ? ThemeTypes.light : ThemeTypes.dark
+    const action = setTheme({ type: newThemeType })
+    dispatch(action)
+  }
+
   return (
     <Container>
       <MenuContainer>
         <AppName>React Memory Game</AppName>
 
         <MenuContent>
-          <DifficultyLabel>Choose a Difficulty:</DifficultyLabel>
-          <div>Each difficulty changes the number of cards</div>
+          <DifficultyLabelContainer>
+            <DifficultyLabel>
+              <DifficultyLabelTitle>Choose a Difficulty:</DifficultyLabelTitle>
+              <DifficultyLabelSubtitle>
+                Each difficulty changes the number of cards
+              </DifficultyLabelSubtitle>
+            </DifficultyLabel>
+
+            <SwitchThemesButton onClick={onSwitchThemes} title="Trocar Temas">
+              <FontAwesomeIcon icon="palette" />
+            </SwitchThemesButton>
+          </DifficultyLabelContainer>
 
           <DifficultyContainer>
             <Difficulty
