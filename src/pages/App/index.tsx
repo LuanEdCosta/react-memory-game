@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { HashRouter, Switch, Route } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import DificultyChooser from '../DifficultyChooser'
 import GlobalStyles from '../../styles/Global'
@@ -15,12 +15,12 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={themeColors}>
       <GlobalStyles />
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <HashRouter basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route exact path="/" component={DificultyChooser} />
           <Route exact path="/game" component={Game} />
         </Switch>
-      </BrowserRouter>
+      </HashRouter>
     </ThemeProvider>
   )
 }

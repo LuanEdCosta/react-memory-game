@@ -1,16 +1,12 @@
 import React, { useState } from 'react'
-import { useLocation } from 'react-router-dom'
-import { GameLocationState } from './types'
+import { useTimer, useTypedSelector } from '../../hooks'
 import GameWinMessage from './GameWinMessage'
 import GameControlBar from './GameControlBar'
 import GameContext from './GameContext'
-import { useTimer } from '../../hooks'
 import { Container } from './styles'
 import GameCards from './GameCards'
 
 const Game: React.FC = () => {
-  const { state } = useLocation<GameLocationState>()
-
   const [iconList, setIconList] = useState<string[]>([])
   const [iconFoundList, setIconFoundList] = useState<string[]>([])
   const [firstSelectedCard, setFirstSelectedCard] = useState(-1)
@@ -18,6 +14,8 @@ const Game: React.FC = () => {
   const [isShowingWinModal, setIsShowingWinModal] = useState(false)
   const [isCheckingCards, setIsCheckingCards] = useState(false)
   const [isPaused, setIsPaused] = useState(true)
+
+  const { difficulty } = useTypedSelector(({ GameConfig }) => GameConfig)
 
   const {
     hoursText,
@@ -31,7 +29,7 @@ const Game: React.FC = () => {
   return (
     <GameContext.Provider
       value={{
-        difficulty: state.difficulty,
+        difficulty,
         isPaused,
         setIsPaused,
         iconList,

@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { GameLocationState } from '../Game/types'
 import { useDispatch } from 'react-redux'
-import { setTheme } from '../../store/actions'
+import { setTheme, setGameConfig } from '../../store/actions'
+import DIFFICULTIES from '../../config/Difficulties'
 import { useTypedSelector } from '../../hooks'
 import { ThemeTypes } from '../../types/Theme'
 import {
@@ -22,32 +22,23 @@ import {
   PlayButtonContainer,
 } from './styles'
 
-const DIFFICULTIES = {
-  EASY: 12,
-  MEDIUM: 20,
-  HARD: 28,
-  VERY_HARD: 32,
-}
-
 const DifficultyChooser: React.FC = () => {
   const dispatch = useDispatch()
   const history = useHistory()
+
   const themeType = useTypedSelector(({ Theme }) => Theme.type)
 
-  const [selectedDifficulty, setSelectedDifficulty] = useState(
-    DIFFICULTIES.MEDIUM,
+  const selectedDifficulty = useTypedSelector(
+    ({ GameConfig }) => GameConfig.difficulty,
   )
 
   const onSelectDifficulty = (difficulty: number) => (): void => {
-    setSelectedDifficulty(difficulty)
+    const action = setGameConfig({ difficulty })
+    dispatch(action)
   }
 
   const onPlay = (): void => {
-    const gameLocationState: GameLocationState = {
-      difficulty: selectedDifficulty,
-    }
-
-    history.push('/game', gameLocationState)
+    history.push('/game')
   }
 
   const onSwitchThemes = (): void => {
