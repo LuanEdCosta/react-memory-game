@@ -2,7 +2,6 @@
   "name": "react-memory-game",
   "version": "0.1.0",
   "private": false,
-  "homepage": "https://luanedcosta.github.io/react-memory-game",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
