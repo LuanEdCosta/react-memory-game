@@ -30,3 +30,7 @@ Thus i think that TypeScipt is something that i need to learn in order to became
 - [x] Switch themes
 - [ ] Create controls to be able to play with the keyboard
 - [ ] Animate cards on hover, click and when choose the wrong cards
+
+## :man: Author
+
+Luan Eduardo da Costa | [Follow me on Linkedin](https://www.linkedin.com/in/luaneducosta/)
