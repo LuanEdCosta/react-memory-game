@@ -10,7 +10,7 @@ I want to learn TypeScript to understand more about the types used in public lib
 
 A lot of companies are using TypeScript to build large and scalable projects. This is because it improves the intellisense, the documentation and prevent errors in when the customers are using the software.
 
-Thus i think that TypeScipt is something that i need to learn in order to became a better software developer.
+Thus I think that TypeScipt is something that I need to learn in order to became a better software developer.
 
 ## :bulb: TODO
 
