@@ -8,9 +8,9 @@ This is a memory game created with React, TypeScript and Styled Components.
 
 I want to learn TypeScript to understand more about the types used in public libraries and frameworks such as React, React Native and Axios. I also want to create my own libraries to contribute with the awesome JavaScript community.
 
-A lot of companies are using TypeScript to build large and scalable projects. This is because it improves the intellisense, the documentation and prevent errors in when the customers are using the software.
+A lot of companies are using TypeScript to build large and scalable projects, because it improves the intellisense, the documentation and prevent errors when the customers are using the software.
 
-Thus I think that TypeScipt is something that I need to learn in order to became a better software developer.
+I strongly believe that TypeScipt is something that I need to learn in order to became a better software developer.
 
 ## :bulb: TODO
 
