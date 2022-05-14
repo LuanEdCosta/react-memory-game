@@ -4,8 +4,6 @@ This is a memory game created with React, TypeScript and Styled Components.
 
 ## :heart: Motivation
 
-**1. Learn TypeScript**
-
 I want to learn TypeScript to understand more about the types used in public libraries and frameworks such as React, React Native and Axios. I also want to create my own libraries to contribute with the awesome JavaScript community.
 
 A lot of companies are using TypeScript to build large and scalable projects, because it improves the intellisense, the documentation and prevent errors when the customers are using the software.
